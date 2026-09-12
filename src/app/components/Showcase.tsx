@@ -68,10 +68,31 @@ export function Clients() {
   );
 }
 
-const club22Cards = [
-  { src: '/images/club22-portada.png', alt: 'Presentación general del sistema gastronómico desarrollado para Club 22' },
-  { src: '/images/club22-operacion.png', alt: 'Funciones de ventas, mesas y comandas del sistema de Club 22' },
-  { src: '/images/club22-control.png', alt: 'Funciones de stock, balances y carta digital del sistema de Club 22' },
+const systems = [
+  {
+    name: 'Club 22',
+    category: 'GESTIÓN GASTRONÓMICA',
+    logo: '/images/club22-transparent.png',
+    summary: 'Un sistema web a medida que conecta ventas, mesas, comandas, stock y resultados en una sola operación.',
+    className: 'system-club22',
+    cards: [
+      { src: '/images/club22-portada.png', alt: 'Presentación general del sistema gastronómico desarrollado para Club 22' },
+      { src: '/images/club22-operacion.png', alt: 'Funciones de ventas, mesas y comandas del sistema de Club 22' },
+      { src: '/images/club22-control.png', alt: 'Funciones de stock, balances y carta digital del sistema de Club 22' },
+    ],
+  },
+  {
+    name: 'Re Bueno',
+    category: 'GESTIÓN PARA SANGUCHERÍAS',
+    logo: '/images/rebueno-transparent.png',
+    summary: 'Una plataforma a medida para ordenar pedidos, ventas, caja, stock, proveedores, personal y clientes frecuentes.',
+    className: 'system-rebueno',
+    cards: [
+      { src: '/images/rebueno-pedidos-ventas.png', alt: 'Funciones de pedidos, comandas y ventas del sistema de Re Bueno' },
+      { src: '/images/rebueno-stock-proveedores.png', alt: 'Funciones de caja, stock y proveedores del sistema de Re Bueno' },
+      { src: '/images/rebueno-personal-clientes.png', alt: 'Funciones de personal, gestión y clientes frecuentes del sistema de Re Bueno' },
+    ],
+  },
 ];
 
 export function SystemsShowcase() {
@@ -79,21 +100,25 @@ export function SystemsShowcase() {
     <section id="sistemas" className="systems-section section-space" aria-labelledby="systems-title">
       <div className="wrap">
         <div className="systems-heading">
-          <div>
-            <p className="eyebrow">SISTEMAS EN FUNCIONAMIENTO</p>
-            <h2 id="systems-title">Soluciones pensadas<br /><em>para cada negocio.</em></h2>
-          </div>
-          <div className="system-summary">
-            <img src="/images/club22-transparent.png" alt="Club 22 Vinería" width="96" height="96" />
-            <div><span>GESTIÓN GASTRONÓMICA</span><h3>Club 22</h3><p>Un sistema web a medida que conecta ventas, mesas, comandas, stock y resultados en una sola operación.</p></div>
-          </div>
+          <p className="eyebrow">SISTEMAS EN FUNCIONAMIENTO</p>
+          <h2 id="systems-title">Soluciones pensadas<br /><em>para cada negocio.</em></h2>
         </div>
-        <div className="system-cards" aria-label="Presentación del sistema de Club 22">
-          {club22Cards.map(card => (
-            <figure className="system-card" key={card.src}>
-              <img src={card.src} alt={card.alt} width="1080" height="1350" loading="lazy" />
-              <figcaption>CLUB 22 / SISTEMA DE GESTIÓN</figcaption>
-            </figure>
+        <div className="systems-list">
+          {systems.map(system => (
+            <article className={`system-case ${system.className}`} key={system.name}>
+              <div className="system-summary">
+                <img src={system.logo} alt={system.name} width="96" height="96" loading="lazy" />
+                <div><span>{system.category}</span><h3>{system.name}</h3><p>{system.summary}</p></div>
+              </div>
+              <div className="system-cards" aria-label={`Presentación del sistema de ${system.name}`}>
+                {system.cards.map(card => (
+                  <figure className="system-card" key={card.src}>
+                    <img src={card.src} alt={card.alt} width="1080" height="1350" loading="lazy" />
+                    <figcaption>{system.name.toUpperCase()} / SISTEMA DE GESTIÓN</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
         <div className="systems-footer"><p>Este espacio crecerá con cada sistema que desarrollamos.</p><a href="#contacto">Quiero una solución para mi negocio <ArrowUpRight size={18} /></a></div>
