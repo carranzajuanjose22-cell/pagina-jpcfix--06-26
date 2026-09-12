@@ -9,6 +9,7 @@ const clients: { name: string; detail: string; logo?: string }[] = [
   { name: 'Yofre Descartables', detail: 'Yofre Descartables', logo: '/images/yofre-transparent.png' },
   { name: 'Re Bueno', detail: 'Re Bueno', logo: '/images/rebueno-transparent.png' },
   { name: 'Librería Kolores', detail: 'Librería Kolores', logo: '/images/libreria-kolores-transparent.png' },
+  { name: 'Instituto Mixto Secundario Justo José de Urquiza', detail: 'Instituto Mixto Secundario', logo: '/images/instituto-mixto-secundario-transparent.png' },
 ];
 
 export function ShowcaseHero() {

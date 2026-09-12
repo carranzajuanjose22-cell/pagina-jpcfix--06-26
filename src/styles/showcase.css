@@ -38,6 +38,7 @@ body{overflow-x:clip}
 @media(max-width:640px){.wrap{width:calc(100% - 40px)}.section-space{padding:56px 0}.site-nav{height:72px}.brand-logo{width:204px;transform:scale(.9);transform-origin:left center}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:72px;left:0;right:0;padding:20px;background:var(--paper);border-bottom:1px solid var(--line)}.nav-links.is-open{display:flex;flex-direction:column;align-items:stretch;gap:8px}.nav-links a{padding:12px}.nav-links .nav-contact{justify-content:space-between}.section-heading{flex-direction:column;align-items:flex-start;gap:22px;margin-bottom:28px}.section-heading>p{max-width:none}.services-grid,.about-layout,.contact-layout{grid-template-columns:1fr}.service-card{padding:24px}.service-top{margin-bottom:22px}.about-layout{gap:28px}.contact-form{padding:22px}.form-row{gap:22px}.footer-layout{flex-direction:column;align-items:flex-start;padding-bottom:42px}.clients-inner>div:first-child{display:block}.clients-section .eyebrow{max-width:none}.client-group{gap:24px;padding-right:24px}.client-item{width:150px;flex-basis:150px}.client-item img{width:120px;height:120px}.client-item p{font-size:14px}.whatsapp-fab{right:16px;bottom:16px;width:50px;height:50px}}
 
 .client-white-logo img{background:#69151b;padding:12px}.client-item img{border-radius:8px}
+.client-white-logo img{border-radius:50%}
 
 @keyframes client-marquee{to{transform:translateX(-50%)}}
 .client-carousel:hover .client-track,.client-carousel.is-paused .client-track{animation-play-state:paused}
