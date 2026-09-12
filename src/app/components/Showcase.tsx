@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowUpRight, ChevronRight } from 'lucide-react';
 import '../../styles/showcase.css';
 
@@ -13,6 +13,36 @@ const clients: { name: string; detail: string; logo?: string }[] = [
 ];
 
 export function ShowcaseHero() {
+  const projects = [
+    {
+      name: 'CLUB 22',
+      category: 'SOFTWARE PARA GASTRONOMÍA',
+      title: <>Cada pedido,<br /><em>en su lugar.</em></>,
+      image: '/images/club22-mesas.png',
+      alt: 'Pantalla real del sistema de Club 22 para gestionar las mesas del salón',
+      detail: 'Mesas. Comandas. Control.',
+      theme: 'project-club22',
+    },
+    {
+      name: 'RE BUENO',
+      category: 'GESTIÓN PARA SANGUCHERÍAS',
+      title: <>Tu negocio,<br /><em>bien abastecido.</em></>,
+      image: '/images/rebueno-gestion.png',
+      alt: 'Panel de gestión de ventas, compras, personal y resultados de Re Bueno',
+      detail: 'Ventas. Stock. Resultados.',
+      theme: 'project-rebueno',
+    },
+  ];
+  const [projectIndex, setProjectIndex] = useState(0);
+  const [projectPaused, setProjectPaused] = useState(false);
+  const project = projects[projectIndex];
+
+  useEffect(() => {
+    if (projectPaused) return;
+    const timer = window.setInterval(() => setProjectIndex(index => (index + 1) % projects.length), 6500);
+    return () => window.clearInterval(timer);
+  }, [projectPaused, projects.length]);
+
   return (
     <section className="showcase-hero">
       <div className="showcase-layout">
@@ -26,12 +56,17 @@ export function ShowcaseHero() {
           </div>
           <div className="hero-note"><span /> Tecnología a medida. Atención de persona a persona.</div>
         </div>
-        <div className="project-poster">
-          <div className="poster-top"><span>JPCFIX / PROYECTOS</span><span>CLUB 22</span></div>
-          <p className="poster-category">SOFTWARE PARA GASTRONOMÍA</p>
-          <h2>Cada pedido,<br /><em>en su lugar.</em></h2>
-          <div className="project-screen"><img src="/images/club22-mesas.png" alt="Pantalla real del sistema de Club 22 para gestionar las mesas del salón" width="1440" height="900" /></div>
-          <div className="poster-bottom"><span>Mesas. Comandas. Control.</span><a href="#clientes" aria-label="Conocer el proyecto de Club 22"><ArrowUpRight size={23} /></a></div>
+        <div className={`project-poster ${project.theme}`} onMouseEnter={() => setProjectPaused(true)} onMouseLeave={() => setProjectPaused(false)} onFocus={() => setProjectPaused(true)} onBlur={() => setProjectPaused(false)}>
+          <div className="poster-content" key={project.name}>
+            <div className="poster-top"><span>JPCFIX / PROYECTOS</span><span>{project.name}</span></div>
+            <p className="poster-category">{project.category}</p>
+            <h2>{project.title}</h2>
+            <div className="project-screen"><img src={project.image} alt={project.alt} width="1440" height="900" /></div>
+            <div className="poster-bottom"><span>{project.detail}</span><a href="#sistemas" aria-label={`Conocer el sistema de ${project.name}`}><ArrowUpRight size={23} /></a></div>
+          </div>
+          <div className="project-switcher" aria-label="Elegir sistema destacado">
+            {projects.map((item, index) => <button key={item.name} className={index === projectIndex ? 'is-active' : ''} onClick={() => setProjectIndex(index)} aria-label={`Mostrar ${item.name}`} aria-pressed={index === projectIndex} />)}
+          </div>
         </div>
       </div>
       <div className="expertise-strip"><span>DESARROLLO WEB</span><span aria-hidden="true">✳</span><span>SISTEMAS A MEDIDA</span><span aria-hidden="true">✳</span><span>SEGURIDAD ELECTRÓNICA</span></div>
