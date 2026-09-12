@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Code2, LayoutDashboard, Camera, ShieldCheck, Mail, Phone, MapPin, Menu, X, MessageCircle, ArrowUpRight, Zap, Globe, Lock } from 'lucide-react';
-import { ShowcaseHero, Clients } from './components/Showcase';
+import { ShowcaseHero, Clients, SystemsShowcase } from './components/Showcase';
 
 const whatsapp = 'https://wa.me/5493516121652';
 const services = [
@@ -24,7 +24,7 @@ function Nav() {
     <Brand />
     <button className="menu-toggle" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
     <nav id="main-nav" className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Navegación principal">
-      {['Servicios', 'Clientes', 'Nosotros', 'Contacto'].map(label => <a key={label} className={label === 'Contacto' ? 'nav-contact' : ''} href={`#${label.toLowerCase()}`} onClick={() => setOpen(false)}>{label}{label === 'Contacto' && <ArrowUpRight size={16} />}</a>)}
+      {['Sistemas', 'Servicios', 'Clientes', 'Nosotros', 'Contacto'].map(label => <a key={label} className={label === 'Contacto' ? 'nav-contact' : ''} href={`#${label.toLowerCase()}`} onClick={() => setOpen(false)}>{label}{label === 'Contacto' && <ArrowUpRight size={16} />}</a>)}
     </nav>
   </div></header>;
 }
@@ -81,7 +81,7 @@ function Contact() {
 }
 
 export default function App() {
-  return <div className="site-shell" id="inicio"><Nav /><main><ShowcaseHero /><Clients /><Services /><About /><Contact /></main>
+  return <div className="site-shell" id="inicio"><Nav /><main><ShowcaseHero /><Clients /><SystemsShowcase /><Services /><About /><Contact /></main>
     <footer className="site-footer"><div className="wrap footer-layout"><Brand /><p>© {new Date().getFullYear()} JPCFIX · Córdoba, Argentina</p><a href="https://www.instagram.com/jpcfixsolutions/" target="_blank" rel="noopener noreferrer">Seguinos en Instagram <ArrowUpRight size={17}/></a></div></footer>
     <a className="whatsapp-fab" href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"><MessageCircle size={26}/></a>
   </div>;
