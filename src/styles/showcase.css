@@ -39,6 +39,7 @@ body{overflow-x:clip}
 
 .client-white-logo img{background:#69151b;padding:12px}.client-item img{border-radius:8px}
 .client-white-logo img{border-radius:50%}
+.client-round-logo img{border-radius:50%}
 
 @keyframes client-marquee{to{transform:translateX(-50%)}}
 .client-carousel:hover .client-track,.client-carousel.is-paused .client-track{animation-play-state:paused}

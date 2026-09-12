@@ -9,7 +9,7 @@ const clients: { name: string; detail: string; logo?: string }[] = [
   { name: 'Yofre Descartables', detail: 'Yofre Descartables', logo: '/images/yofre-transparent.png' },
   { name: 'Re Bueno', detail: 'Re Bueno', logo: '/images/rebueno-transparent.png' },
   { name: 'Librería Kolores', detail: 'Librería Kolores', logo: '/images/libreria-kolores-transparent.png' },
-  { name: 'Instituto Mixto Secundario Justo José de Urquiza', detail: 'Instituto Mixto Secundario', logo: '/images/instituto-mixto-secundario-transparent.png' },
+  { name: 'Instituto Mixto Secundario Justo José de Urquiza', detail: 'Instituto Mixto Secundario', logo: '/images/instituto-mixto-secundario.png' },
 ];
 
 export function ShowcaseHero() {
@@ -43,7 +43,7 @@ export function Clients() {
   const [paused, setPaused] = useState(false);
   const clientCards = (copy: 'primary' | 'duplicate') => clients.map(client => (
     <article
-      className={client.name === 'Club 22' ? 'client-item client-white-logo' : 'client-item'}
+      className={client.name === 'Club 22' ? 'client-item client-white-logo' : client.name.startsWith('Instituto Mixto') ? 'client-item client-round-logo' : 'client-item'}
       key={`${copy}-${client.name}`}
       aria-hidden={copy === 'duplicate' ? true : undefined}
     >
