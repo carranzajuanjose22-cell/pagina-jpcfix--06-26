@@ -70,7 +70,7 @@ function Contact() {
       <label htmlFor="contact-message">¿En qué podemos ayudarte?</label><textarea id="contact-message" rows={5} required placeholder="Contanos un poco sobre tu negocio y tu idea…" value={form.message} onChange={e=>setForm({...form,message:e.target.value})} />
       <div className="form-bottom"><p>Se abrirá tu aplicación de correo para enviar la consulta.</p><button type="submit" className="showcase-primary">Preparar consulta <ArrowUpRight size={18} /></button></div>
     </form>
-    <aside className="contact-details"><p className="eyebrow">TAMBIÉN NOS ENCONTRÁS ACÁ</p>
+    <aside className="contact-details"><p className="eyebrow">TAMBIÉN NOS ENCONTRÁS AQUÍ</p>
       <a href="mailto:jpcfixsolution@gmail.com"><Mail size={20}/><span><small>Email</small>jpcfixsolution@gmail.com</span></a>
       <a href="tel:+5493516121652"><Phone size={20}/><span><small>Teléfono</small>351 612 1652</span></a>
       <a href="tel:+5493517594888"><Phone size={20}/><span><small>Otra línea de contacto</small>351 759 4888</span></a>
