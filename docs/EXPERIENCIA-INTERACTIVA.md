@@ -50,7 +50,7 @@ Fuente: `jpcfix-generador-presupuestos-gratis-v003/aplicacion-personalizable`. S
 
 `/#software`, `/#automatizaciones`, `/#gastronomia`, `/#carta-digital`, `/#inmobiliarias`, `/#herramientas` y `/herramientas/presupuestos/index.html`.
 
-Los metadatos generales y de la herramienta están preparados. Falta el dominio público para URLs sociales absolutas y canonical. Se conserva noindex durante la revisión. No hubo despliegue.
+Publicación aprobada el 25/11/2026 para https://jpcfix.vercel.app/. Los metadatos generales y de la herramienta usan ese dominio en canonical, og:url e imágenes sociales. Se habilitó indexación y se añadieron robots y sitemap. La rama main activa el despliegue de producción en Vercel.
 
 ## Verificación y evidencias
 

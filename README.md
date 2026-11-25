@@ -8,7 +8,7 @@
 - `pnpm lint`: revisión TS/TSX y reglas de hooks.
 - `pnpm qa:interactive`: pruebas de navegador, PDF, movimiento reducido, capturas y grabaciones. Requiere el runtime de navegador instalado; ver variables de configuración en la documentación.
 
-No se ha publicado el resultado. Se trabaja en `codex/rediseno-jpcfix` y el estado anterior de esta etapa está conservado en `.local/baseline-redesign.zip`.
+La publicación fue aprobada para https://jpcfix.vercel.app/. Vercel despliega producción desde `main`; el rediseño se trabajó en `codex/rediseno-jpcfix`. El estado anterior de esta etapa está conservado en `.local/baseline-redesign.zip`.
 
 ## Contenido y arquitectura
 
@@ -30,8 +30,8 @@ Anclajes `#sistemas`, `#servicios`, `#clientes`, `#nosotros`, `#contacto`, `#ini
 
 Resultados y capturas de la etapa interactiva en `qa/immersive/validation.json` y `qa/immersive/`. Incluyen seis resoluciones, scroll reversible, controles y simulaciones, generador, paginación, impresión y movimiento reducido. Los videos `recorrido-desktop` y `recorrido-mobile` registran el recorrido completo. Las métricas de rendimiento son de laboratorio y no equivalen a datos de campo de visitantes.
 
-## Antes de publicar
+## Publicación
 
-Confirmar dominio público para canonical, og:url y URLs sociales absolutas; aprobar visualmente el resultado y preparar el cambio de noindex. No hubo despliegue ni alteración de los videos originales.
+Dominio confirmado: https://jpcfix.vercel.app/. Canonical, og:url, imágenes sociales absolutas, robots y sitemap están preparados para ese dominio. La publicación se activa al actualizar `main`. Los videos originales no se modificaron.
 
 La revisión responsive previa al push incluye ocho tamaños y comprueba controles alcanzables, pantallas bajas y menú horizontal. El registro está en `docs/validacion-responsive.json`. La evidencia multimedia generada permanece local e ignorada por Git bajo `qa/`.
