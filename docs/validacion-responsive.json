@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-25",
+  "target": "Local production build, Chromium",
+  "lint": "passed",
+  "build": "passed",
+  "viewports": [
+    {
+      "width": 360,
+      "height": 640,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": true,
+      "mobileMenuReachable": true
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": true,
+      "mobileMenuReachable": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": true,
+      "mobileMenuReachable": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": true,
+      "mobileMenuReachable": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": true,
+      "mobileMenuReachable": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": false,
+      "mobileMenuReachable": null
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": false,
+      "mobileMenuReachable": null
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "horizontalOverflow": false,
+      "sectionsChecked": [
+        "inicio",
+        "soluciones",
+        "carta-digital",
+        "inmobiliarias",
+        "herramientas",
+        "proyectos",
+        "nosotros",
+        "contacto"
+      ],
+      "scenesChecked": 3,
+      "manualScenePalettes": "passed",
+      "mobileMenuChecked": true,
+      "mobileMenuReachable": true
+    }
+  ],
+  "failures": [],
+  "runtimeErrors": [],
+  "evidence": "Local screenshots under qa/responsive (ignored by Git)",
+  "fixes": [
+    "Short viewports use native scrolling and persistent manual scene selection.",
+    "Mobile navigation scrolls within available viewport height.",
+    "Manual scene selection consistently updates its color palette."
+  ]
+}

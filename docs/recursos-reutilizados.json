@@ -1,0 +1,64 @@
+[
+  {
+    "file": "public/media/campaigns/burger.webp",
+    "source": "D:\\publicidad jpcfix\\videos-jpcfix-tiktok\\JPCFIX-Gastronomia-Motion-Premium-V002\\proyecto\\assets\\burger.webp",
+    "sourceHash": "6db9ebe4f9474e740af5964f106f86e2070d6ba8d60338b7d35b1c0fe4ac14f1",
+    "outputHash": "75daeb964eaf8a47bbb0cd56a958a5f0ae1b9bd1ad6bd46af468b28ab069a75f",
+    "bytes": 104666,
+    "treatment": "Original campaign image, resized to max 800px and WebP quality 82; no crop, brand redraw or new image generation."
+  },
+  {
+    "file": "public/media/campaigns/pizza.webp",
+    "source": "D:\\publicidad jpcfix\\videos-jpcfix-tiktok\\JPCFIX-Gastronomia-Motion-Premium-V002\\proyecto\\assets\\pizza.webp",
+    "sourceHash": "402fed172ddb5cb91193c418748f6ad7c2455c4e78eb0d377b490eda6c86a277",
+    "outputHash": "eceaf76dcaf361cc326958c61975702cf5c3390b7942e4fc874d9b2923441345",
+    "bytes": 134028,
+    "treatment": "Original campaign image, resized to max 800px and WebP quality 82; no crop, brand redraw or new image generation."
+  },
+  {
+    "file": "public/media/campaigns/combo.webp",
+    "source": "D:\\publicidad jpcfix\\videos-jpcfix-tiktok\\JPCFIX-Gastronomia-Motion-Premium-V002\\proyecto\\assets\\combo.webp",
+    "sourceHash": "e25e93e45f961abe077646d741151974ed6cb2319c3b953b17c0871745f52417",
+    "outputHash": "d25bd3da00dfb43d52abb3bdd6aa11dca6272665ddaec90346228ea8385a5db4",
+    "bytes": 90602,
+    "treatment": "Original campaign image, resized to max 800px and WebP quality 82; no crop, brand redraw or new image generation."
+  },
+  {
+    "file": "public/media/campaigns/cafe.webp",
+    "source": "D:\\publicidad jpcfix\\videos-jpcfix-tiktok\\jpcfix-carta-digital-editorial\\proyecto\\assets\\miga.webp",
+    "sourceHash": "bacf993bdab32f646457636c5b1592ae7a9ad173973b1f73aa19366deda3a428",
+    "outputHash": "a9ff46339f1af71e57a340c4a98a05b6f3ff23ef76c0ada6884b9fe713bcb946",
+    "bytes": 85316,
+    "treatment": "Original campaign image, resized to max 800px and WebP quality 82; no crop, brand redraw or new image generation."
+  },
+  {
+    "file": "public/media/campaigns/casa.webp",
+    "source": "D:\\publicidad jpcfix\\videos-jpcfix-tiktok\\jpcfix-campana-inmobiliaria\\shared-assets\\casa-exterior.webp",
+    "sourceHash": "0b7b422479f54cc154ead513abf6b646ec5d2fdc813444da4b2d2c0e0a604381",
+    "outputHash": "0a45bd22b23812a7f872286dc318a5ade66443d08664a021d16216a59aff4030",
+    "bytes": 182548,
+    "treatment": "Original campaign image, resized to max 800px and WebP quality 82; no crop, brand redraw or new image generation."
+  },
+  {
+    "file": "public/media/campaigns/interior.webp",
+    "source": "D:\\publicidad jpcfix\\videos-jpcfix-tiktok\\jpcfix-campana-inmobiliaria\\shared-assets\\casa-interior.webp",
+    "sourceHash": "3cf4e4ad04396bd4ebfecb96eee766537adfac3ddc4af38a4cb548fd7afb2246",
+    "outputHash": "1be0b13b6c20ea31b7fef67231ba10002acff7a4ac2fb27753511ac0ae1d6389",
+    "bytes": 79170,
+    "treatment": "Original campaign image, resized to max 800px and WebP quality 82; no crop, brand redraw or new image generation."
+  },
+  {
+    "file": "public/media/campaigns/departamento.webp",
+    "source": "D:\\publicidad jpcfix\\videos-jpcfix-tiktok\\jpcfix-campana-inmobiliaria\\shared-assets\\departamento.webp",
+    "sourceHash": "d0dd24c851fe184b4bea38d0320b8f8335bb192ae7c00a18883b2e2775d792ab",
+    "outputHash": "f09b387e09d4c0823f0fed50c8b3a9630a242e119d87d8940ec135a1cf6cbc7d",
+    "bytes": 65654,
+    "treatment": "Original campaign image, resized to max 800px and WebP quality 82; no crop, brand redraw or new image generation."
+  },
+  {
+    "file": "public/herramientas/presupuestos/index.html",
+    "source": "D:/publicidad jpcfix/videos-jpcfix-tiktok/jpcfix-generador-presupuestos-gratis-v003/aplicacion-personalizable/index.html",
+    "sourceHash": "41e56e0aaf6da7d2d6577dcb3b3ecbbbf317bdcddc394a8e55eb31d48049d571",
+    "treatment": "Application logic preserved; static utility CSS, responsive styles, metadata and accessibility labels added."
+  }
+]

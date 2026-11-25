@@ -1,78 +1,16 @@
-import { useEffect, useState } from 'react';
-import { ArrowUpRight, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import '../../styles/showcase.css';
 
 // Add confirmed customers and their supplied logo paths here.
 const clients: { name: string; detail: string; logo?: string }[] = [
-  { name: 'Club 22', detail: 'Club 22 Vinería', logo: '/images/club22-transparent.png' },
-  { name: 'Parrilla Sergio Andres', detail: 'Parrilla Sergio Andres', logo: '/images/parrilla-sergio-andres-transparent.png' },
-  { name: 'Yofre Descartables', detail: 'Yofre Descartables', logo: '/images/yofre-transparent.png' },
-  { name: 'Re Bueno', detail: 'Re Bueno', logo: '/images/rebueno-transparent.png' },
-  { name: 'Librería Kolores', detail: 'Librería Kolores', logo: '/images/libreria-kolores-transparent.png' },
-  { name: 'Instituto Mixto Secundario Justo José de Urquiza', detail: 'Instituto Mixto Secundario', logo: '/images/instituto-mixto-secundario.png' },
+  { name: 'Club 22', detail: 'Club 22 Vinería', logo: '/images/club22-transparent-web.png' },
+  { name: 'Parrilla Sergio Andres', detail: 'Parrilla Sergio Andres', logo: '/images/parrilla-sergio-andres-transparent-web.png' },
+  { name: 'Yofre Descartables', detail: 'Yofre Descartables', logo: '/images/yofre-transparent-web.png' },
+  { name: 'Re Bueno', detail: 'Re Bueno', logo: '/images/rebueno-transparent-web.png' },
+  { name: 'Librería Kolores', detail: 'Librería Kolores', logo: '/images/libreria-kolores-transparent-web.png' },
+  { name: 'Instituto Mixto Secundario Justo José de Urquiza', detail: 'Instituto Mixto Secundario', logo: '/images/instituto-mixto-secundario-web.png' },
 ];
-
-export function ShowcaseHero() {
-  const projects = [
-    {
-      name: 'CLUB 22',
-      category: 'SOFTWARE PARA GASTRONOMÍA',
-      title: <>Cada pedido,<br /><em>en su lugar.</em></>,
-      image: '/images/club22-mesas.png',
-      alt: 'Pantalla real del sistema de Club 22 para gestionar las mesas del salón',
-      detail: 'Mesas. Comandas. Control.',
-      theme: 'project-club22',
-    },
-    {
-      name: 'RE BUENO',
-      category: 'GESTIÓN PARA SANGUCHERÍAS',
-      title: <>Tu negocio,<br /><em>bien abastecido.</em></>,
-      image: '/images/rebueno-gestion.png',
-      alt: 'Panel de gestión de ventas, compras, personal y resultados de Re Bueno',
-      detail: 'Ventas. Stock. Resultados.',
-      theme: 'project-rebueno',
-    },
-  ];
-  const [projectIndex, setProjectIndex] = useState(0);
-  const [projectPaused, setProjectPaused] = useState(false);
-  const project = projects[projectIndex];
-
-  useEffect(() => {
-    if (projectPaused) return;
-    const timer = window.setInterval(() => setProjectIndex(index => (index + 1) % projects.length), 6500);
-    return () => window.clearInterval(timer);
-  }, [projectPaused, projects.length]);
-
-  return (
-    <section className="showcase-hero">
-      <div className="showcase-layout">
-        <div className="showcase-copy">
-          <p className="eyebrow">CÓRDOBA, ARGENTINA / SOLUCIONES TECNOLÓGICAS</p>
-          <h1>Tu negocio.<br />Su próxima<br /><em>gran versión.</em></h1>
-          <p className="hero-description">Software a medida, desarrollo web y seguridad. Conectamos lo que tu negocio necesita para trabajar mejor, todos los días.</p>
-          <div className="showcase-actions">
-            <a className="showcase-primary" href="#contacto">Hablemos de tu proyecto <ArrowUpRight size={19} /></a>
-            <a className="showcase-secondary" href="#servicios">Explorá los servicios <ChevronRight size={17} /></a>
-          </div>
-          <div className="hero-note"><span /> Tecnología a medida. Atención de persona a persona.</div>
-        </div>
-        <div className={`project-poster ${project.theme}`} onMouseEnter={() => setProjectPaused(true)} onMouseLeave={() => setProjectPaused(false)} onFocus={() => setProjectPaused(true)} onBlur={() => setProjectPaused(false)}>
-          <div className="poster-content" key={project.name}>
-            <div className="poster-top"><span>JPCFIX / PROYECTOS</span><span>{project.name}</span></div>
-            <p className="poster-category">{project.category}</p>
-            <h2>{project.title}</h2>
-            <div className="project-screen"><img src={project.image} alt={project.alt} width="1440" height="900" /></div>
-            <div className="poster-bottom"><span>{project.detail}</span><a href="#sistemas" aria-label={`Conocer el sistema de ${project.name}`}><ArrowUpRight size={23} /></a></div>
-          </div>
-          <div className="project-switcher" aria-label="Elegir sistema destacado">
-            {projects.map((item, index) => <button key={item.name} className={index === projectIndex ? 'is-active' : ''} onClick={() => setProjectIndex(index)} aria-label={`Mostrar ${item.name}`} aria-pressed={index === projectIndex} />)}
-          </div>
-        </div>
-      </div>
-      <div className="expertise-strip"><span>DESARROLLO WEB</span><span aria-hidden="true">✳</span><span>SISTEMAS A MEDIDA</span><span aria-hidden="true">✳</span><span>SEGURIDAD ELECTRÓNICA</span></div>
-    </section>
-  );
-}
 
 export function Clients() {
   const [paused, setPaused] = useState(false);
@@ -107,25 +45,23 @@ const systems = [
   {
     name: 'Club 22',
     category: 'GESTIÓN GASTRONÓMICA',
-    logo: '/images/club22-transparent.png',
+    logo: '/images/club22-transparent-web.png',
     summary: 'Un sistema web a medida que conecta ventas, mesas, comandas, stock y resultados en una sola operación.',
     className: 'system-club22',
+    benefits: ['Conectá el salón con las comandas', 'Consultá stock y balances', 'Organizá la carta digital'],
     cards: [
-      { src: '/images/club22-portada.png', alt: 'Presentación general del sistema gastronómico desarrollado para Club 22' },
-      { src: '/images/club22-operacion.png', alt: 'Funciones de ventas, mesas y comandas del sistema de Club 22' },
-      { src: '/images/club22-control.png', alt: 'Funciones de stock, balances y carta digital del sistema de Club 22' },
+      { src: '/images/club22-mesas.png', alt: 'Interfaz real de Club 22 para organizar las mesas del salón' },
     ],
   },
   {
     name: 'Re Bueno',
     category: 'GESTIÓN PARA SANGUCHERÍAS',
-    logo: '/images/rebueno-transparent.png',
+    logo: '/images/rebueno-transparent-web.png',
     summary: 'Una plataforma a medida para ordenar pedidos, ventas, caja, stock, proveedores, personal y clientes frecuentes.',
     className: 'system-rebueno',
+    benefits: ['Ordená pedidos y ventas', 'Centralizá caja y proveedores', 'Gestioná personal y clientes'],
     cards: [
-      { src: '/images/rebueno-pedidos-ventas.png', alt: 'Funciones de pedidos, comandas y ventas del sistema de Re Bueno' },
-      { src: '/images/rebueno-stock-proveedores.png', alt: 'Funciones de caja, stock y proveedores del sistema de Re Bueno' },
-      { src: '/images/rebueno-personal-clientes.png', alt: 'Funciones de personal, gestión y clientes frecuentes del sistema de Re Bueno' },
+      { src: '/images/rebueno-gestion.png', alt: 'Panel real de Re Bueno para consultar ventas, compras, personal y resultados' },
     ],
   },
 ];
@@ -136,7 +72,7 @@ export function SystemsShowcase() {
       <div className="wrap">
         <div className="systems-heading">
           <p className="eyebrow">SISTEMAS EN FUNCIONAMIENTO</p>
-          <h2 id="systems-title">Soluciones pensadas<br /><em>para cada negocio.</em></h2>
+          <h2 id="systems-title">Proyectos reales.<br /><em>Soluciones en marcha.</em></h2>
         </div>
         <div className="systems-list">
           {systems.map(system => (
@@ -145,20 +81,20 @@ export function SystemsShowcase() {
                 <img src={system.logo} alt={system.name} width="96" height="96" loading="lazy" />
                 <div><span>{system.category}</span><h3>{system.name}</h3><p>{system.summary}</p></div>
               </div>
-              <div className="system-cards" aria-label={`Presentación del sistema de ${system.name}`}>
+              <ul className="case-benefits">{system.benefits.map(benefit => <li key={benefit}>{benefit}</li>)}</ul>
+              <div className="system-cards" role="region" tabIndex={0} aria-label={`Presentación del sistema de ${system.name}`}>
                 {system.cards.map(card => (
-                  <figure className="system-card" key={card.src}>
-                    <img src={card.src} alt={card.alt} width="1080" height="1350" loading="lazy" />
-                    <figcaption>{system.name.toUpperCase()} / SISTEMA DE GESTIÓN</figcaption>
+                  <figure className="system-card" key={card.src}><div className="case-screen-heading"><span>{system.name} / Vista del sistema</span><span>Desarrollo a medida por JPCFIX</span></div>
+                    {system.name === 'Re Bueno' ? <div className="safe-system-view"><strong>Tu operación, conectada.</strong><div>{['Pedidos y ventas', 'Caja y stock', 'Proveedores', 'Personal y clientes'].map(label=><span key={label}>{label}</span>)}</div><p>Representación de módulos del sistema. Sin datos operativos.</p></div> : <img src={card.src} alt={card.alt} width="1920" height="1080" loading="lazy" />}
+                    <figcaption>{system.name === 'Re Bueno' ? 'Representación funcional' : 'Interfaz real'} · {system.name} · Software a medida</figcaption>
                   </figure>
                 ))}
               </div>
             </article>
           ))}
         </div>
-        <div className="systems-footer"><p>Este espacio crecerá con cada sistema que desarrollamos.</p><a href="#contacto">Quiero una solución para mi negocio <ArrowUpRight size={18} /></a></div>
+        <div className="systems-footer"><p>Dos negocios. Dos formas de trabajar. Sistemas hechos a su medida.</p><a href="#contacto">Quiero una solución para mi negocio <ArrowUpRight size={18} /></a></div>
       </div>
     </section>
   );
 }
-

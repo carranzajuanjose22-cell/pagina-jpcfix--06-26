@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generador de presupuestos gratis | JPCFIX</title>
+<meta name="description" content="Creá presupuestos profesionales con tu logo y tus datos comerciales. Gratis, con impresión y guardado como PDF desde tu navegador.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Tu empresa. Tu logo. Tus presupuestos. | JPCFIX">
+<meta property="og:description" content="Generador gratuito de presupuestos profesionales, listo para imprimir o guardar como PDF.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/images/jpcfix-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="tool.css">
+    <link rel="stylesheet" href="vendor/utilities.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @import url('vendor/fonts.css');
+
+        :root {
+            --brand-blue: #2563eb;
+            --brand-dark: #0f172a;
+            --pdf-mt: 12mm;
+            --pdf-mb: 10mm;
+            --pdf-mx: 14mm;
+        }
+
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, .font-display { font-family: 'Archivo', sans-serif; }
+
+        .hoja-a4 {
+            width: 210mm;
+            min-height: 297mm;
+            background-color: white;
+            position: relative;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+        right: 0;
+        bottom: 0;
+            background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .contenido-presupuesto {
+            position: relative;
+            z-index: 10;
+            padding: var(--pdf-mt) var(--pdf-mx) var(--pdf-mb);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .pdf-body {
+            flex: 1 1 auto;
+        }
+
+        .pdf-footer-wrap {
+            flex-shrink: 0;
+            margin-top: auto;
+            padding-top: 6mm;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .pdf-total-section {
+            padding-top: 0;
+            margin-bottom: 2mm;
+        }
+
+        .pdf-signature-section {
+            min-height: 20mm;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-top: 3mm;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .pdf-signature-line {
+            min-height: 15mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .marca-agua {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 180px;
+            color: rgba(15, 23, 42, 0.07);
+            font-weight: 900;
+            pointer-events: none;
+            z-index: 1;
+            white-space: nowrap;
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            html, body {
+                width: 100%;
+                height: 100% !important;
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            #area-pdf {
+                margin: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                width: 210mm !important;
+                display: block !important;
+                gap: 0 !important;
+            }
+
+            .hoja-a4 {
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                margin: 0 !important;
+                page-break-after: always;
+                break-after: page;
+                page-break-inside: avoid;
+                break-inside: avoid;
+                box-shadow: none !important;
+            }
+
+            .pdf-footer-wrap {
+                margin-top: auto !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            #area-pdf tr.item-row {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            #area-pdf thead {
+                display: table-header-group;
+            }
+
+            #area-pdf table {
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+        }
+
+        .input-premium {
+            @apply w-full bg-slate-50 border-2 border-slate-100 p-3 rounded-xl focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition-all duration-300 font-medium text-slate-700;
+        }
+
+.brand-settings{max-width:896px;margin:0 auto 24px;background:#fff;border:1px solid #d7e2f0;border-radius:24px;padding:28px;font-family:Inter}.brand-settings h2{font-size:28px;font-weight:900;color:#0f172a}.brand-settings p{font-size:14px;color:#64748b;margin:8px 0 24px}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.settings-grid label{font-size:12px;font-weight:700;color:#475569}.settings-grid input{display:block;border:1px solid #cbd5e1;border-radius:9px;padding:10px;margin-top:7px;width:100%;font-size:14px;color:#0f172a;background:#f8fafc}.settings-grid small{font-weight:400;font-size:11px}.settings-bottom{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:20px;font-size:12px;color:#64748b}.settings-bottom button{border:1px solid #cbd5e1;padding:8px;border-radius:8px;color:#334155}.company-heading{display:flex;gap:16px;align-items:center;max-width:440px}.company-logo[src]+.company-name{display:none}.company-logo{max-width:260px;height:74px;object-fit:contain}.company-logo:not([src]){display:none}.company-name{font-size:30px;font-weight:900;overflow-wrap:anywhere;line-height:1.1}.company-contact,.company-info{font-size:11px;color:#475569;margin-top:9px;max-width:400px;overflow-wrap:anywhere}.company-activity{letter-spacing:1px}.input-premium{border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;padding:10px;max-width:100%;min-width:0}.marca-agua{font-size:110px;max-width:100%}@media(max-width:600px){.settings-grid{grid-template-columns:1fr}}@media print{.brand-settings{display:none!important}}
+</style>
+</head>
+<body class="bg-slate-100 py-10 px-4">
+
+<nav class="tool-nav no-print"><a href="/">Volver a JPCFIX</a><span>Herramienta gratuita · Datos en tu navegador</span></nav>
+<section class="brand-settings no-print" aria-label="Identidad de tu empresa">
+<h2>Tu logo. Tu empresa.</h2><p>Personalizá el encabezado y el documento que enviás a tus clientes.</p>
+<div class="settings-grid">
+<label>Logotipo<input id="brand_logo" type="file" accept="image/png,image/jpeg,image/webp"><small>PNG, JPG o WebP · hasta 2 MB</small></label>
+<label>Nombre comercial<input id="brand_name" maxlength="60" value="Mi empresa"></label>
+<label>Actividad<input id="brand_activity" maxlength="90" placeholder="Ej.: Servicios eléctricos"></label>
+<label>Contacto<input id="brand_contact" maxlength="140" placeholder="Teléfono o correo"></label>
+<label>Dirección / información adicional<input id="brand_info" maxlength="140" placeholder="Ciudad, dirección o datos fiscales"></label>
+<label>Marca de agua<input id="brand_watermark" maxlength="30" placeholder="Texto opcional"></label>
+</div><div class="settings-bottom"><label><input type="checkbox" id="brand_show_watermark"> Mostrar marca de agua</label><button id="brand_remove_logo" type="button">Quitar logo</button><span id="brand_status" role="status">Datos guardados en este navegador.</span></div></section>
+    <div class="max-w-4xl mx-auto bg-white p-10 rounded-[2rem] shadow-2xl mb-12 no-print border border-white">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div>
+                <div class="company-heading"><img class="company-logo" alt="Logo de tu empresa"><h2 class="company-name text-4xl font-black text-slate-900">Mi empresa</h2></div>
+                <p class="text-slate-400 font-bold text-xs uppercase tracking-[0.2em] mt-2">Generador de presupuestos</p>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-100 p-2 rounded-2xl">
+                <span class="px-4 py-1.5 bg-white text-slate-700 rounded-xl text-xs font-bold shadow-sm uppercase tracking-wider italic">GRATIS</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div class="group">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2 mb-1 block" for="in_nombre">Cliente Final</label>
+                <input type="text" id="in_nombre" placeholder="Ej: Juan Pérez" class="input-premium" oninput="actualizar()">
+            </div>
+            <div class="group">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2 mb-1 block" for="in_dir">Locación</label>
+                <input type="text" id="in_dir" placeholder="Ej: Av. Siempre Viva 742" class="input-premium" oninput="actualizar()">
+            </div>
+            <div class="group">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2 mb-1 block" for="in_fecha">Fecha Emisión</label>
+                <input type="date" id="in_fecha" class="input-premium" oninput="actualizar()">
+            </div>
+            <div class="group">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2 mb-1 block" for="in_validez">Plazo de Validez</label>
+                <input type="text" id="in_validez" class="input-premium" value="15 días corridos" oninput="actualizar()">
+            </div>
+        </div>
+
+        <div id="items-container" class="space-y-3 mb-8">
+            <div class="flex gap-3 items-center">
+                <input type="text" placeholder="Tarea o repuesto..." aria-label="Descripción del ítem" class="flex-1 input-premium desc" oninput="actualizar()">
+                <input type="number" placeholder="1" aria-label="Cantidad" class="w-24 input-premium cant text-center font-bold" oninput="actualizar()">
+                <input type="number" placeholder="0.00" aria-label="Precio unitario" class="w-36 input-premium precio font-bold" oninput="actualizar()">
+                <button class="bg-red-50 text-red-400 hover:bg-red-500 hover:text-white transition-all w-12 h-12 rounded-xl flex items-center justify-center font-bold" aria-label="Quitar ítem" onclick="this.parentElement.remove(); actualizar()">✕</button>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-6 pt-10 border-t border-slate-100">
+            <button onclick="agregarFila()" class="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-black transition-all transform active:scale-95 flex items-center justify-center gap-2">
+                <span class="text-xl">+</span> NUEVO ÍTEM
+            </button>
+            <button onclick="generarPDF()" class="w-full sm:w-auto px-12 py-5 bg-blue-600 text-white rounded-2xl font-black hover:bg-blue-700 transition-all hover:-translate-y-1 shadow-2xl shadow-blue-200 uppercase tracking-widest">
+            Imprimir / Guardar PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenedor dinámico de hojas -->
+    <p class="preview-hint no-print">Vista previa del documento. En pantallas pequeñas, deslizá la hoja para recorrerla.</p><div id="area-pdf" class="flex flex-col items-center gap-10 print:block print:gap-0">
+    </div>
+
+    <!-- Plantilla de la Hoja A4 -->
+    <template id="tmpl-hoja">
+        <div class="hoja-a4 shadow-2xl print:shadow-none">
+            <div class="bg-pattern"></div>
+            <div class="marca-agua font-display"></div>
+
+            <div class="contenido-presupuesto">
+                <div class="pdf-body">
+                    <div class="flex justify-between items-end mb-16 relative z-10">
+                        <div>
+                            <div class="company-heading"><img class="company-logo" alt="Logo de tu empresa"><h1 class="company-name font-display">Mi empresa</h1></div><p class="company-contact"></p><p class="company-info"></p>
+                            <div class="mt-6 flex items-center gap-3">
+                                <span class="h-1 w-10 bg-blue-600"></span>
+                                <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.4em]"><span class="company-activity"></span></p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="relative z-10">
+                                <p class="text-sm font-black text-slate-900 uppercase tracking-widest border-b-4 border-blue-600 pb-1 inline-block">Presupuesto Oficial</p>
+                                <p class="text-[10px] text-slate-400 font-bold mt-2 uppercase tracking-widest">DOCUMENTO ORIGINAL</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agregamos la clase 'client-info' para identificar este bloque -->
+                    <div class="client-info flex justify-between mb-16 relative z-10 border-y border-slate-100 py-8">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] mb-1">Preparado para</p>
+                                <p class="out_nombre text-xl font-extrabold text-slate-800 uppercase">......................</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Ubicación del Servicio</p>
+                                <p class="out_dir text-xs font-bold text-slate-600">......................</p>
+                            </div>
+                        </div>
+                        <div class="text-right space-y-4">
+                            <div>
+                                <p class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Fecha de Emisión</p>
+                                <p class="out_fecha text-sm font-black text-slate-800">../../....</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Validez del costo</p>
+                                <p class="out_validez text-sm font-black text-blue-600">15 DÍAS</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-grow relative z-10">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">
+                                    <th class="pb-6 text-left w-1/2">Descripción Detallada</th>
+                                    <th class="pb-6 text-center">Cant.</th>
+                                    <th class="pb-6 text-right">Unitario</th>
+                                    <th class="pb-6 text-right">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tabla-items text-sm text-slate-700"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Aquí se inyectará el pie de página solo si es la última hoja -->
+                <div class="footer-slot mt-auto"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Plantilla del Pie de Página (Total y Firma) -->
+    <template id="tmpl-footer">
+        <div class="pdf-footer-wrap w-full">
+            <div class="pdf-total-section relative z-10">
+                <div class="flex justify-between items-end">
+                    <div class="pb-2">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <p class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Aprobación Inmediata</p>
+                        </div>
+                        <p class="text-[9px] text-slate-400 max-w-[280px] leading-relaxed">
+                            Acepto los términos de servicio y el desglose de costos aquí presentados para el inicio de las tareas técnicas.
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <div class="bg-slate-900 p-5 rounded-3xl shadow-2xl min-w-[300px]">
+                            <p class="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-1">Total Inversión</p>
+                            <p class="total_final text-4xl font-black text-white tracking-tighter font-display">$ 0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-signature-section relative z-10">
+                <div>
+                    <p class="text-[10px] font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 uppercase">Original</p>
+                </div>
+                <div class="pdf-signature-line text-center">
+                    <div class="w-48 h-px bg-slate-200 mb-4 mx-auto"></div>
+                    <p class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-900">Firma autorizada</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+
+const brandKeys=['name','activity','contact','info','watermark'];let brandLogo='';
+function escaparTexto(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function aplicarIdentidad(){
+ const value=k=>document.getElementById('brand_'+k).value.trim();
+ document.querySelectorAll('.company-name').forEach(e=>{e.textContent=value('name')||'Mi empresa'});
+ for(const k of ['activity','contact','info'])document.querySelectorAll('.company-'+k).forEach(e=>{e.textContent=value(k)});
+ document.querySelectorAll('.company-logo').forEach(e=>{if(brandLogo)e.src=brandLogo;else e.removeAttribute('src')});
+ document.querySelectorAll('.marca-agua').forEach(e=>{e.textContent=document.getElementById('brand_show_watermark').checked?value('watermark'):''});
+}
+function guardarIdentidad(){aplicarIdentidad();const data={logo:brandLogo,show:document.getElementById('brand_show_watermark').checked};brandKeys.forEach(k=>data[k]=document.getElementById('brand_'+k).value);try{localStorage.setItem('presupuestos-identidad-v1',JSON.stringify(data));document.getElementById('brand_status').textContent='Identidad guardada en este navegador.'}catch(e){document.getElementById('brand_status').textContent='Identidad aplicada. El navegador no permitió guardarla.'}}
+document.addEventListener('DOMContentLoaded',()=>{
+ try{const saved=JSON.parse(localStorage.getItem('presupuestos-identidad-v1')||'null');if(saved){brandKeys.forEach(k=>document.getElementById('brand_'+k).value=saved[k]||'');if(/^data:image\/(png|jpeg|webp);base64,/.test(saved.logo||''))brandLogo=saved.logo;document.getElementById('brand_show_watermark').checked=!!saved.show}}catch(e){}
+ brandKeys.forEach(k=>document.getElementById('brand_'+k).addEventListener('input',guardarIdentidad));document.getElementById('brand_show_watermark').addEventListener('change',guardarIdentidad);
+ document.getElementById('brand_remove_logo').addEventListener('click',()=>{brandLogo='';document.getElementById('brand_logo').value='';guardarIdentidad()});
+ document.getElementById('brand_logo').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;if(!['image/png','image/jpeg','image/webp'].includes(file.type)||file.size>2*1024*1024){document.getElementById('brand_status').textContent='Elegí una imagen PNG, JPG o WebP de hasta 2 MB.';e.target.value='';return}const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{brandLogo=reader.result;guardarIdentidad()};img.onerror=()=>{document.getElementById('brand_status').textContent='No se pudo leer la imagen.'};img.src=reader.result};reader.readAsDataURL(file)});
+ aplicarIdentidad();
+});
+
+        // Inicializar la primera hoja al cargar la página
+        document.addEventListener('DOMContentLoaded', actualizar);
+
+        function agregarFila() {
+            const div = document.createElement('div');
+            div.className = "flex gap-3 items-center animate-in slide-in-from-bottom-2 duration-300";
+            div.innerHTML = `
+                <input type="text" placeholder="Tarea o repuesto..." aria-label="Descripción del ítem" class="flex-1 input-premium desc" oninput="actualizar()">
+                <input type="number" placeholder="1" aria-label="Cantidad" class="w-24 input-premium cant text-center font-bold" oninput="actualizar()">
+                <input type="number" placeholder="0.00" aria-label="Precio unitario" class="w-36 input-premium precio font-bold" oninput="actualizar()">
+                <button class="bg-red-50 text-red-400 hover:bg-red-500 hover:text-white transition-all w-12 h-12 rounded-xl flex items-center justify-center font-bold" aria-label="Quitar ítem" onclick="this.parentElement.remove(); actualizar()">✕</button>`;
+            document.getElementById('items-container').appendChild(div);
+            actualizar();
+        }
+
+        function actualizar() {
+            const inNombre = document.getElementById('in_nombre').value || '......................';
+            const inDir = document.getElementById('in_dir').value || '......................';
+            const fechaVal = document.getElementById('in_fecha').value;
+            const outFecha = fechaVal ? fechaVal.split('-').reverse().join('/') : '../../....';
+            const outValidez = (document.getElementById('in_validez').value || '15 DÍAS').toUpperCase();
+
+            let totalGral = 0;
+            const filas = document.querySelectorAll('#items-container > div');
+            const items = [];
+
+            filas.forEach(f => {
+                const d = f.querySelector('.desc').value;
+                const c = parseFloat(f.querySelector('.cant').value) || 0;
+                const p = parseFloat(f.querySelector('.precio').value) || 0;
+                const t = c * p;
+                if(d || c > 0) {
+                    totalGral += t;
+                    items.push({ d, c, p, t });
+                }
+            });
+
+            // Dividir los ítems en grupos (chunks) de a 5
+            const chunks = [];
+            for (let i = 0; i < items.length; i += 5) {
+                chunks.push(items.slice(i, i + 5));
+            }
+            if (chunks.length === 0) chunks.push([]); // Siempre mostrar al menos 1 hoja en blanco
+
+            const areaPdf = document.getElementById('area-pdf');
+            areaPdf.innerHTML = ''; // Limpiar hojas viejas
+
+            const tmplHoja = document.getElementById('tmpl-hoja');
+            const tmplFooter = document.getElementById('tmpl-footer');
+
+            // Generar una hoja A4 física por cada grupo de 5 ítems
+            chunks.forEach((chunk, index) => {
+                const hoja = tmplHoja.content.cloneNode(true);
+
+                if (index === 0) {
+                    // Solo en la primera hoja llenamos los datos del cliente
+                    hoja.querySelector('.out_nombre').innerText = inNombre;
+                    hoja.querySelector('.out_dir').innerText = inDir;
+                    hoja.querySelector('.out_fecha').innerText = outFecha;
+                    hoja.querySelector('.out_validez').innerText = outValidez;
+                } else {
+                    // En la segunda hoja o más, eliminamos todo el bloque de datos
+                    const infoCliente = hoja.querySelector('.client-info');
+                    if (infoCliente) infoCliente.remove();
+                }
+
+                const tbody = hoja.querySelector('.tabla-items');
+                chunk.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.className = "border-b border-slate-50 item-row";
+                    tr.innerHTML = `<td class="py-6 font-bold text-slate-800 text-base">${escaparTexto(item.d)}</td>
+                                    <td class="py-6 text-center text-slate-500 font-bold">${item.c}</td>
+                                    <td class="py-6 text-right text-slate-500 font-medium">$ ${item.p.toLocaleString('es-AR')}</td>
+                                    <td class="py-6 text-right font-black text-slate-900 text-base">$ ${item.t.toLocaleString('es-AR')}</td>`;
+                    tbody.appendChild(tr);
+                });
+
+                // Si es la última hoja del grupo, inyectarle el Pie de Página (Total)
+                if (index === chunks.length - 1) {
+                    const footer = tmplFooter.content.cloneNode(true);
+                    footer.querySelector('.total_final').innerText = '$ ' + totalGral.toLocaleString('es-AR');
+                    hoja.querySelector('.footer-slot').appendChild(footer);
+                }
+
+                areaPdf.appendChild(hoja);
+                aplicarIdentidad();
+            });
+        }
+
+        function generarPDF() {
+            window.print();
+        }
+
+    </script>
+</body>
+</html>
